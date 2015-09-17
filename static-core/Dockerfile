@@ -17,3 +17,5 @@ RUN apt-get install curl build-essential libssl-dev libfontconfig1 python git gi
 RUN curl https://raw.githubusercontent.com/isaacs/nave/master/nave.sh > /tmp/nave.sh
 RUN chmod +x /tmp/nave.sh
 RUN /tmp/nave.sh usemain 2.5.0
+RUN mkdir -p /www
+WORKDIR /www
