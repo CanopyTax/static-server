@@ -18,7 +18,7 @@ RUN apt-get update
 RUN apt-get install curl build-essential libssl-dev libfontconfig1 python git git-core -y
 
 # SET the version below to change node version
-ENV NODEJS_VERSION 4.1.1
+ENV NODEJS_VERSION 4.0.0
 
 RUN apt-get install libfontconfig1 -fy
 RUN curl -SLO "https://nodejs.org/download/release/v$NODEJS_VERSION/node-v$NODEJS_VERSION-linux-x64.tar.gz"
