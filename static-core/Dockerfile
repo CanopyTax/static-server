@@ -29,7 +29,7 @@ RUN tar -xzf "node-v$NODEJS_VERSION-linux-x64.tar.gz" -C /usr/local --strip-comp
 RUN rm "node-v$NODEJS_VERSION-linux-x64.tar.gz" SHASUMS256.txt.asc
 
 # And now we update npm
-RUN npm install -g npm
+#RUN npm install -g npm
 
 RUN mkdir -p /www
 WORKDIR /www
