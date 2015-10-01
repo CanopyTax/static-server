@@ -15,7 +15,10 @@ RUN gpg --keyserver pool.sks-keyservers.net --recv-keys \
 
 # Make sure node, npm, and python are all installed.
 RUN apt-get update
-RUN apt-get install curl build-essential libssl-dev libfontconfig1 python git git-core -y
+RUN apt-get install curl build-essential libssl-dev libfontconfig1 python python-pip git git-core -y
+
+# Install AWS CLI for deployments
+RUN pip install awscli
 
 # SET the version below to change node version
 ENV NODEJS_VERSION 4.0.0
