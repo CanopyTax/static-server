@@ -1,4 +1,4 @@
-FROM debian
+FROM debian:wheezy
 #MAINTAINER nick.humrich@canopytax.com
 
 # Set the NODEJS_VERSION below to change the node version
