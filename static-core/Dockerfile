@@ -14,10 +14,10 @@ RUN apt-get update && \
     mkdir -p /www
 
 # Now install node/npm.
-RUN apt-get update && apt-get install curl build-essential libssl-dev libfontconfig1 -y && \
+RUN apt-get update && apt-get install bzip2 curl build-essential libssl-dev libfontconfig1 -y && \
     curl -SLO "https://nodejs.org/download/release/v$NODEJS_VERSION/node-v$NODEJS_VERSION-linux-x64.tar.gz" && \
     tar -xzf "node-v$NODEJS_VERSION-linux-x64.tar.gz" -C /usr/local --strip-components=1 && \
-    apt-get remove --purge -y build-essential libssl-dev && \
+    apt-get remove --purge -y libssl-dev && \
     apt-get autoremove -y && \
     rm -rf /var/lib/apt/lists/*
 
