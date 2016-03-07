@@ -18,6 +18,7 @@ RUN apt-get update && apt-get install bzip2 curl build-essential libssl-dev libf
     curl -SLO "https://nodejs.org/download/release/v$NODEJS_VERSION/node-v$NODEJS_VERSION-linux-x64.tar.gz" && \
     tar -xzf "node-v$NODEJS_VERSION-linux-x64.tar.gz" -C /usr/local --strip-components=1 && \
     npm install -g npm && \
+    npm set progress=false \
     apt-get remove --purge -y libssl-dev && \
     apt-get autoremove -y && \
     rm -rf /var/lib/apt/lists/*
