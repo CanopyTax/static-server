@@ -2,7 +2,7 @@ FROM debian:wheezy
 #MAINTAINER nick.humrich@canopytax.com
 
 # Set the NODEJS_VERSION below to change the node version
-ENV NODEJS_VERSION=4.1.2
+ENV NODEJS_VERSION=5.7.1
 
 # Make sure python, awscli, and git are all installed.
 RUN apt-get update && \
@@ -17,6 +17,7 @@ RUN apt-get update && \
 RUN apt-get update && apt-get install bzip2 curl build-essential libssl-dev libfontconfig1 -y && \
     curl -SLO "https://nodejs.org/download/release/v$NODEJS_VERSION/node-v$NODEJS_VERSION-linux-x64.tar.gz" && \
     tar -xzf "node-v$NODEJS_VERSION-linux-x64.tar.gz" -C /usr/local --strip-components=1 && \
+    npm install -g npm && \
     apt-get remove --purge -y libssl-dev && \
     apt-get autoremove -y && \
     rm -rf /var/lib/apt/lists/*
