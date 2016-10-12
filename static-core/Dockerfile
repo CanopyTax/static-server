@@ -23,6 +23,12 @@ RUN apt-get update && apt-get install bzip2 curl build-essential libssl-dev libf
     apt-get autoremove -y && \
     rm -rf /var/lib/apt/lists/*
 
+# install yarn (yarnpkg.com)
+RUN sudo apt-key adv --keyserver pgp.mit.edu --recv D101F7899D41F3C3 && \
+    echo "deb http://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list && \
+    sudo apt-get update && sudo apt-get install yarn && \
+    rm -rf /var/lib/apt/lists/*
+
 # If you need to update npm add the following line to the above command
 # npm install -g npm
 
