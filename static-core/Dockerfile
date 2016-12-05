@@ -2,7 +2,7 @@ FROM debian:wheezy
 #MAINTAINER nick.humrich@canopytax.com
 
 # Set the NODEJS_VERSION below to change the node version
-ENV NODEJS_VERSION=5.7.1
+ENV NODEJS_VERSION=6.9.1
 
 # Make sure python, awscli, and git are all installed.
 RUN apt-get update && \
