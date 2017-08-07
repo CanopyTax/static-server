@@ -2,14 +2,15 @@ FROM ubuntu:16.04
 #MAINTAINER nick.humrich@canopytax.com
 
 # Set the NODEJS_VERSION below to change the node version
-ENV NODEJS_VERSION=6.9.1
+ENV NODEJS_VERSION=8.2.1
 ENV DEBIAN_FRONTEND=noninteractive
 
+
+COPY woff-code-latest.zip ./
 # Make sure python, awscli, fontcustom, and git are all installed.
 RUN apt -y update && \
     apt install -y python python-pip python-dev wget unzip git build-essential zlib1g-dev ruby-full rubygems fontforge && \
     pip install awscli && \
-    wget http://people.mozilla.com/~jkew/woff/woff-code-latest.zip && \
     unzip woff-code-latest.zip -d sfnt2woff && cd sfnt2woff && make && mv sfnt2woff /usr/local/bin/ && \
     gem install fontcustom && \
     rm -rf /var/lib/apt/lists/* && \
@@ -29,9 +30,23 @@ RUN apt update && apt install bzip2 curl build-essential libssl-dev libfontconfi
 RUN apt-key adv --keyserver pgp.mit.edu --recv D101F7899D41F3C3 && \
     echo "deb http://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list && \
     apt update && apt install -y yarn && \
-    rm -rf /var/lib/apt/lists/*
+rm -rf /var/lib/apt/lists/*
 
-# If you need to update npm add the following line to the above command
-# npm install -g npm
+
+
+FROM node
+#MAINTAINER nick.humrich@canopytax.com
+
+# Set the NODEJS_VERSION below to change the node version
+
+# Make sure python, awscli, fontcustom, and git are all installed.
+RUN apt -y update && \
+    apt install -y python python-pip python-dev wget unzip git build-essential zlib1g-dev ruby-full rubygems fontforge && \
+    pip install awscli
+
+RUN unzip woff-code-latest.zip -d sfnt2woff && cd sfnt2woff && make && mv sfnt2woff /usr/local/bin/ && \
+    gem install fontcustom && \
+    rm -rf /var/lib/apt/lists/* && \
+    mkdir -p /www
 
 WORKDIR /www
