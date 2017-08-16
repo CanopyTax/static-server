@@ -12,7 +12,8 @@ RUN apt -y update && \
     apt install -y python python-pip python-dev wget unzip git build-essential zlib1g-dev ruby-full rubygems fontforge && \
     pip install awscli
 
-RUN unzip /tmp/woff-code-latest.zip -d sfnt2woff && cd sfnt2woff && make && mv sfnt2woff /usr/local/bin/ && \
+RUN git clone https://github.com/bramstein/sfnt2woff-zopfli.git sfnt2woff-zopfli && cd sfnt2woff-zopfli && make && mv sfnt2woff-zopfli /usr/local/bin/sfnt2woff && \
+    git clone --recursive https://github.com/google/woff2.git && cd woff2 && make clean all && mv woff2_compress /usr/local/bin/ && mv woff2_decompress /usr/local/bin/ && \
     gem install fontcustom && \
     rm -rf /var/lib/apt/lists/* && \
     mkdir -p /www
