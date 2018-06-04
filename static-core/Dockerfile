@@ -2,7 +2,7 @@ FROM ubuntu:16.04
 #MAINTAINER nick.humrich@canopytax.com
 
 # Set the NODEJS_VERSION below to change the node version
-ENV NODEJS_VERSION=8.2.1
+ENV NODEJS_VERSION=10.3.0
 ENV DEBIAN_FRONTEND=noninteractive
 
 
@@ -29,7 +29,7 @@ RUN apt update && apt install bzip2 curl build-essential libssl-dev libfontconfi
     rm -rf /var/lib/apt/lists/*
 
 # install yarn (yarnpkg.com)
-RUN apt-key adv --keyserver pgp.mit.edu --recv D101F7899D41F3C3 && \
-    echo "deb http://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list && \
-    apt update && apt install -y yarn && \
-rm -rf /var/lib/apt/lists/*
+RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add - && \
+    echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list && \
+    sudo apt-get update && sudo apt-get install --no-install-recommends yarn -y && \
+    rm -rf /var/lib/apt/lists/*
