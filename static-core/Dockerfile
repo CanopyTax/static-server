@@ -9,7 +9,7 @@ ENV DEBIAN_FRONTEND=noninteractive
 COPY woff-code-latest.zip /tmp/
 # Make sure python, awscli, fontcustom, and git are all installed.
 RUN apt -y update && \
-    apt install -y python python-pip python-dev wget unzip git build-essential zlib1g-dev ruby-full rubygems fontforge && \
+    apt install -y python python-pip python-dev wget unzip git build-essential zlib1g-dev ruby-full rubygems fontforge apt-transport-https ca-certificates && \
     pip install awscli
 
 RUN git clone https://github.com/bramstein/sfnt2woff-zopfli.git sfnt2woff-zopfli && cd sfnt2woff-zopfli && make && mv sfnt2woff-zopfli /usr/local/bin/sfnt2woff && \
@@ -29,7 +29,7 @@ RUN apt update && apt install bzip2 curl build-essential libssl-dev libfontconfi
     rm -rf /var/lib/apt/lists/*
 
 # install yarn (yarnpkg.com)
-RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add - && \
-    echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list && \
-    sudo apt-get update && sudo apt-get install --no-install-recommends yarn -y && \
+RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - && \
+    echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list && \
+    apt update && apt install --no-install-recommends yarn -y && \
     rm -rf /var/lib/apt/lists/*
