@@ -2,7 +2,7 @@ FROM ubuntu:16.04
 #MAINTAINER nick.humrich@canopytax.com
 
 # Set the NODEJS_VERSION below to change the node version
-ENV NODEJS_VERSION=12.16.0
+ENV NODEJS_VERSION=14.16.0
 ENV DEBIAN_FRONTEND=noninteractive
 
 
