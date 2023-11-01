@@ -1,4 +1,4 @@
-FROM ubuntu:18.04
+FROM ubuntu:20.04
 #MAINTAINER nick.humrich@canopytax.com
 
 # Set the NODEJS_VERSION below to change the node version
@@ -9,7 +9,7 @@ ENV DEBIAN_FRONTEND=noninteractive
 COPY woff-code-latest.zip /tmp/
 # Make sure python, awscli, fontcustom, and git are all installed.
 RUN apt -y update && \
-    apt install -y python python-pip python-dev wget unzip git build-essential zlib1g-dev ruby-full rubygems fontforge apt-transport-https ca-certificates && \
+    apt install -y python python3-pip python3-dev wget unzip git build-essential zlib1g-dev ruby-full rubygems fontforge apt-transport-https ca-certificates && \
     pip install awscli
 
 RUN git clone https://github.com/bramstein/sfnt2woff-zopfli.git sfnt2woff-zopfli && cd sfnt2woff-zopfli && make && mv sfnt2woff-zopfli /usr/local/bin/sfnt2woff && \
@@ -23,7 +23,7 @@ RUN apt update && apt install bzip2 curl build-essential libssl-dev libfontconfi
     curl -SLO "https://nodejs.org/download/release/v$NODEJS_VERSION/node-v$NODEJS_VERSION-linux-x64.tar.gz" && \
     tar -xzf "node-v$NODEJS_VERSION-linux-x64.tar.gz" -C /usr/local --strip-components=1 && \
     npm install -g npm && \
-    npm set progress=false \
+    npm set progress=false && \
     apt remove --purge -y libssl-dev && \
     apt autoremove -y && \
     rm -rf /var/lib/apt/lists/*
