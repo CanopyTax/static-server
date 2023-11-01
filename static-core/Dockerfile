@@ -2,7 +2,7 @@ FROM ubuntu:18.04
 #MAINTAINER nick.humrich@canopytax.com
 
 # Set the NODEJS_VERSION below to change the node version
-ENV NODEJS_VERSION=16.16.0
+ENV NODEJS_VERSION=18.18.2
 ENV DEBIAN_FRONTEND=noninteractive
 
 
@@ -33,4 +33,3 @@ RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - && \
     echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list && \
     apt update && apt install --no-install-recommends yarn -y && \
     rm -rf /var/lib/apt/lists/*
-    
